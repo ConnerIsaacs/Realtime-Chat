@@ -12,10 +12,12 @@ btn.addEventListener("click",()=>{
         message:message.value,
         handle:handle.value
     });
+  socket.emit("notTyping");
   message.value = "";
 });
 socket.on('connect',()=>{
   socket.emit("newConnection");
+  socket.emit("announceConnect");
 })
 
 message.addEventListener('keydown',(e)=>{
@@ -56,6 +58,10 @@ socket.on("notTyping",()=>{
 socket.on("newConnection",(connects)=>{
   document.getElementById("number").innerHTML="<p>"+connects+" member(s) currently in room</p>";
 })
+socket.on("announceConnect",()=>{
+  output.innerHTML += "<p><span>New member has joined the room!</span></p>";
+})
 socket.on("loseConnection",(connects)=>{
   document.getElementById("number").innerHTML="<p>"+connects+" member(s) currently in room</p>";
+  output.innerHTML += "<p><span>A member has left the room</span></p>";
 })
