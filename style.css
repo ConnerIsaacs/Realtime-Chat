@@ -12,6 +12,9 @@ h2{
     margin: 30px auto;
     border-radius: 2px;
 }
+span{
+  color:grey;
+}
 #number{
   width:50%;
   height:60px;
